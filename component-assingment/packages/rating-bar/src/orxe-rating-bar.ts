@@ -38,21 +38,23 @@ export default class OrxeRatingBar extends LitElement {
   private _renderRatingBar(): TemplateResult {
     if(this.type == 'linear') {
       return html`
-        <div class="rating-bar-container">
+        <div class="rating-bar-container" data-testid="linear-rating-bar">
           <div
+            data-testid="linear-indicator"
             style=${styleMap(this._showProgress())}
-            class="rating-bar ${this._getColurClass()}">
+            class="${this._getColurClass()} rating-bar">
           </div>
         </div>
         <div class="rating-bar-info">
           <span>${this.label}</span>
-          <span>${this.actualRating}</span>
+          <span data-testid="linear-rating-value">${this.actualRating}</span>
         </div>
       `;
     }
     else {
       return html `
       <svg
+      data-testid="donut-rating-bar"
       aria-hidden="true"
       class="donut"
       width="40"
@@ -61,6 +63,7 @@ export default class OrxeRatingBar extends LitElement {
     >
       <circle cx="20" cy="20" r="18" class="donut-container" />
       <circle
+        data-testid="donut-track-indicator"
         cx="20"
         cy="20"
         r="18"
